@@ -1,141 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_view"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
 
     <LinearLayout
-        android:id="@+id/top_view"
-        android:layout_width="fill_parent"
-        android:layout_height="50dip"
-        android:background="#ff404040"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".25"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="50dip"
-            android:onClick="back"
-            android:text="Back" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".3"
+            android:background="#ffffff">
 
-        <ImageButton
-            android:id="@+id/refresh_button"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:onClick="refreshMap"
-            android:padding="7.5dip"
-            android:scaleType="fitCenter"
-            android:src="@drawable/make_a_map_refresh" />
+            <com.laifeng.sopcastsdk.ui.CameraLivingView
+                android:id="@+id/liveView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <ImageButton
-            android:id="@+id/save_map"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:onClick="saveMap"
-            android:padding="7.5dip"
-            android:scaleType="fitCenter"
-            android:src="@drawable/make_a_map_save" />
+            <com.laifeng.sopcastdemo.ui.TopRightWeightedLayout
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:background="#4d000000"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.laifeng.sopcastdemo.ui.MultiToggleImageButton
+                    android:id="@+id/record_mic_button"
+                    style="@style/NiceOption"
+                    app:imageIds="@array/record_mic_icons" />
+
+                <com.laifeng.sopcastdemo.ui.MultiToggleImageButton
+                    android:id="@+id/camera_flash_button"
+                    style="@style/NiceOption"
+                    app:imageIds="@array/camera_flashmode_icons" />
+
+                <com.laifeng.sopcastdemo.ui.MultiToggleImageButton
+                    android:id="@+id/camera_switch_button"
+                    style="@style/NiceOption"
+                    app:imageIds="@array/camera_id_icons" />
+
+                <com.laifeng.sopcastdemo.ui.MultiToggleImageButton
+                    android:id="@+id/camera_focus_button"
+                    style="@style/NiceOption"
+                    app:imageIds="@array/camera_focus_icons" />
+
+                <com.laifeng.sopcastdemo.ui.MultiToggleImageButton
+                    android:id="@+id/camera_render_button"
+                    style="@style/NiceOption"
+                    app:imageIds="@array/camera_render_icons" />
+            </com.laifeng.sopcastdemo.ui.TopRightWeightedLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#4d000000"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnRecord"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@mipmap/ic_record_start" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressConnecting"
+                style="?android:progressBarStyleSmall"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/top_bar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#ff404040"
-            android:gravity="right"
-            android:orientation="horizontal" />
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".7">
+
+            <org.ros.android.view.RosImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon" />
+
+            <org.ros.android.view.RosImageView
+                android:id="@+id/image1"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon" />
+
+            <org.ros.android.view.RosImageView
+                android:id="@+id/image2"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon" />
+
+            <org.ros.android.view.RosImageView
+                android:id="@+id/image3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon" />
+
+            <org.ros.android.view.RosImageView
+                android:id="@+id/image4"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon" />
+
+            <org.ros.android.view.RosImageView
+                android:id="@+id/image5"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/icon" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_weight=".75"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/top_bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".25">
+            android:layout_height="50dp"
+            android:background="#ff404040"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:id="@+id/refresh_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:onClick="refreshMap"
+                android:scaleType="fitCenter"
+                android:src="@drawable/make_a_map_refresh" />
 
-                <org.ros.android.view.RosImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/icon" />
-
-                <org.ros.android.view.RosImageView
-                    android:id="@+id/image1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/icon" />
-
-                <org.ros.android.view.RosImageView
-                    android:id="@+id/image2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/icon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:id="@+id/save_map"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:onClick="saveMap"
+                android:padding="7.5dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/make_a_map_save" />
 
-
-                <org.ros.android.view.RosImageView
-                    android:id="@+id/image3"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/icon" />
-
-                <org.ros.android.view.RosImageView
-                    android:id="@+id/image4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/icon" />
-
-                <org.ros.android.view.RosImageView
-                    android:id="@+id/image5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/icon" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/side_layout"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight=".75"
-            android:gravity="right"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <org.ros.android.view.visualization.VisualizationView
                 android:id="@+id/map_view"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight=".25" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".3" />
 
             <org.ros.android.view.VirtualJoystickView
                 android:id="@+id/virtual_joystick"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight=".25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
                 android:adjustViewBounds="true" />
         </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>
+
+
