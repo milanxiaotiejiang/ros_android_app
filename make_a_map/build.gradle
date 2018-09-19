@@ -27,21 +27,22 @@ android {
         versionCode 3
         versionName "1.0.1"
 
-        applicationId "com.github.rosjava.android_apps.make_a_map"
     }
-//    productFlavors {
-//        kinetic {
-//            applicationId "com.github.rosjava.android_apps.make_a_map"
-//        }
-//    }
     lintOptions {
         abortOnError = false
+    }
+    sourceSets {
+        main() {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 
 
 dependencies {
     compile project(':sopcast-sdk')
+    compile project(':plvideo')
+    compile 'com.android.support:appcompat-v7:25.0.2'
     compile 'com.github.rosjava.android_remocons:common_tools:[0.2,0.3)'
     compile 'org.ros.android_core:android_15:[0.3,0.4)'
     compile 'org.ros.rosjava_core:rosjava_geometry:[0.3,0.4)'

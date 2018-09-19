@@ -59,7 +59,7 @@ public class ScreenRecordEncoder {
         mEncoderHandler = new Handler(mHandlerThread.getLooper());
         mBufferInfo = new MediaCodec.BufferInfo();
         mMediaCodec.start();
-        mEncoderHandler.post(swapDataRunnable);
+//        mEncoderHandler.post(swapDataRunnable);
         isStarted = true;
     }
 
@@ -74,7 +74,7 @@ public class ScreenRecordEncoder {
     private Runnable swapDataRunnable = new Runnable() {
         @Override
         public void run() {
-            drainEncoder();
+//            drainEncoder();
         }
     };
 

@@ -26,16 +26,16 @@ import java.nio.ByteBuffer;
 public class StreamController implements OnAudioEncodeListener, OnVideoEncodeListener, Packer.OnPacketListener{
     private Packer mPacker;
     private Sender mSender;
-    private IVideoController mVideoController;
+//    private IVideoController mVideoController;
     private IAudioController mAudioController;
 
     public StreamController(IVideoController videoProcessor, IAudioController audioProcessor) {
         mAudioController = audioProcessor;
-        mVideoController = videoProcessor;
+//        mVideoController = videoProcessor;
     }
 
     public void setVideoConfiguration(VideoConfiguration videoConfiguration) {
-        mVideoController.setVideoConfiguration(videoConfiguration);
+//        mVideoController.setVideoConfiguration(videoConfiguration);
     }
 
     public void setAudioConfiguration(AudioConfiguration audioConfiguration) {
@@ -63,10 +63,10 @@ public class StreamController implements OnAudioEncodeListener, OnVideoEncodeLis
                 }
                 mPacker.start();
                 mSender.start();
-                mVideoController.setVideoEncoderListener(StreamController.this);
+//                mVideoController.setVideoEncoderListener(StreamController.this);
                 mAudioController.setAudioEncodeListener(StreamController.this);
                 mAudioController.start();
-                mVideoController.start();
+//                mVideoController.start();
             }
         });
     }
@@ -75,10 +75,10 @@ public class StreamController implements OnAudioEncodeListener, OnVideoEncodeLis
         SopCastUtils.processNotUI(new SopCastUtils.INotUIProcessor() {
             @Override
             public void process() {
-                mVideoController.setVideoEncoderListener(null);
+//                mVideoController.setVideoEncoderListener(null);
                 mAudioController.setAudioEncodeListener(null);
                 mAudioController.stop();
-                mVideoController.stop();
+//                mVideoController.stop();
                 if(mSender != null) {
                     mSender.stop();
                 }
@@ -94,7 +94,7 @@ public class StreamController implements OnAudioEncodeListener, OnVideoEncodeLis
             @Override
             public void process() {
                 mAudioController.pause();
-                mVideoController.pause();
+//                mVideoController.pause();
             }
         });
     }
@@ -104,7 +104,7 @@ public class StreamController implements OnAudioEncodeListener, OnVideoEncodeLis
             @Override
             public void process() {
                 mAudioController.resume();
-                mVideoController.resume();
+//                mVideoController.resume();
             }
         });
     }
@@ -117,9 +117,9 @@ public class StreamController implements OnAudioEncodeListener, OnVideoEncodeLis
         return mAudioController.getSessionId();
     }
 
-    public boolean setVideoBps(int bps) {
-        return mVideoController.setVideoBps(bps);
-    }
+//    public boolean setVideoBps(int bps) {
+//        return mVideoController.setVideoBps(bps);
+//    }
 
     @Override
     public void onAudioEncode(ByteBuffer bb, MediaCodec.BufferInfo bi) {

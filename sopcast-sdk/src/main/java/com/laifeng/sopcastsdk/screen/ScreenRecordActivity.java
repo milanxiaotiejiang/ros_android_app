@@ -7,16 +7,10 @@ import android.content.Intent;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
 
-import com.laifeng.sopcastsdk.configuration.AudioConfiguration;
-import com.laifeng.sopcastsdk.configuration.VideoConfiguration;
 import com.laifeng.sopcastsdk.constant.SopCastConstant;
 import com.laifeng.sopcastsdk.controller.audio.NormalAudioController;
-import com.laifeng.sopcastsdk.controller.video.ScreenVideoController;
-import com.laifeng.sopcastsdk.controller.StreamController;
-import com.laifeng.sopcastsdk.stream.packer.Packer;
-import com.laifeng.sopcastsdk.stream.sender.Sender;
-import com.laifeng.sopcastsdk.utils.SopCastUtils;
 import com.laifeng.sopcastsdk.utils.SopCastLog;
+import com.laifeng.sopcastsdk.utils.SopCastUtils;
 
 /**
  * @Title: ScreenRecordActivity
@@ -31,7 +25,7 @@ import com.laifeng.sopcastsdk.utils.SopCastLog;
 public class ScreenRecordActivity extends Activity {
     private static final String TAG = SopCastConstant.TAG;
     private static final int RECORD_REQUEST_CODE = 101;
-    private StreamController mStreamController;
+//    private StreamController mStreamController;
     private MediaProjectionManager mMediaProjectionManage;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -50,8 +44,8 @@ public class ScreenRecordActivity extends Activity {
         if (requestCode == RECORD_REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
                 NormalAudioController audioController = new NormalAudioController();
-                ScreenVideoController videoController = new ScreenVideoController(mMediaProjectionManage, resultCode, data);
-                mStreamController = new StreamController(videoController, audioController);
+//                ScreenVideoController videoController = new ScreenVideoController(mMediaProjectionManage, resultCode, data);
+//                mStreamController = new StreamController(videoController, audioController);
                 requestRecordSuccess();
             } else {
                 requestRecordFail();
@@ -67,72 +61,72 @@ public class ScreenRecordActivity extends Activity {
 
     }
 
-    public void setVideoConfiguration(VideoConfiguration videoConfiguration) {
-        if(mStreamController != null) {
-            mStreamController.setVideoConfiguration(videoConfiguration);
-        }
-    }
+//    public void setVideoConfiguration(VideoConfiguration videoConfiguration) {
+//        if(mStreamController != null) {
+//            mStreamController.setVideoConfiguration(videoConfiguration);
+//        }
+//    }
 
-    public void setAudioConfiguration(AudioConfiguration audioConfiguration) {
-        if(mStreamController != null) {
-            mStreamController.setAudioConfiguration(audioConfiguration);
-        }
-    }
+//    public void setAudioConfiguration(AudioConfiguration audioConfiguration) {
+//        if(mStreamController != null) {
+//            mStreamController.setAudioConfiguration(audioConfiguration);
+//        }
+//    }
 
-    protected void startRecording() {
-        if(mStreamController != null) {
-            mStreamController.start();
-        }
-    }
+//    protected void startRecording() {
+//        if(mStreamController != null) {
+//            mStreamController.start();
+//        }
+//    }
 
-    protected void stopRecording() {
-        if(mStreamController != null) {
-            mStreamController.stop();
-        }
-    }
+//    protected void stopRecording() {
+//        if(mStreamController != null) {
+//            mStreamController.stop();
+//        }
+//    }
 
-    protected void pauseRecording() {
-        if(mStreamController != null) {
-            mStreamController.pause();
-        }
-    }
+//    protected void pauseRecording() {
+//        if(mStreamController != null) {
+//            mStreamController.pause();
+//        }
+//    }
 
 
-    protected void resumeRecording() {
-        if(mStreamController != null) {
-            mStreamController.resume();
-        }
-    }
+//    protected void resumeRecording() {
+//        if(mStreamController != null) {
+//            mStreamController.resume();
+//        }
+//    }
 
-    protected void muteRecording(boolean mute) {
-        if(mStreamController != null) {
-            mStreamController.mute(mute);
-        }
-    }
+//    protected void muteRecording(boolean mute) {
+//        if(mStreamController != null) {
+//            mStreamController.mute(mute);
+//        }
+//    }
 
-    protected boolean setRecordBps(int bps) {
-        if(mStreamController != null) {
-            return mStreamController.setVideoBps(bps);
-        } else {
-            return false;
-        }
-    }
+//    protected boolean setRecordBps(int bps) {
+//        if(mStreamController != null) {
+//            return mStreamController.setVideoBps(bps);
+//        } else {
+//            return false;
+//        }
+//    }
 
-    protected void setRecordPacker(Packer packer) {
-        if(mStreamController != null) {
-            mStreamController.setPacker(packer);
-        }
-    }
+//    protected void setRecordPacker(Packer packer) {
+//        if(mStreamController != null) {
+//            mStreamController.setPacker(packer);
+//        }
+//    }
 
-    protected void setRecordSender(Sender sender) {
-        if(mStreamController != null) {
-            mStreamController.setSender(sender);
-        }
-    }
+//    protected void setRecordSender(Sender sender) {
+//        if(mStreamController != null) {
+//            mStreamController.setSender(sender);
+//        }
+//    }
 
     @Override
     protected void onDestroy() {
-        stopRecording();
+//        stopRecording();
         super.onDestroy();
     }
 }

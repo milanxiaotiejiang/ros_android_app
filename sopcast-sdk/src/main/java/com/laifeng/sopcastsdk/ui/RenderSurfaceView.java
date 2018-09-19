@@ -13,6 +13,9 @@ import com.laifeng.sopcastsdk.utils.SopCastLog;
 import com.laifeng.sopcastsdk.video.MyRenderer;
 import com.laifeng.sopcastsdk.video.effect.Effect;
 
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
 /**
  * @Title: RenderSurfaceView
  * @Package com.laifeng.sopcastsdk.ui
@@ -23,7 +26,7 @@ import com.laifeng.sopcastsdk.video.effect.Effect;
  * @Version
  */
 public class RenderSurfaceView extends GLSurfaceView {
-    private MyRenderer mRenderer;
+//    private MyRenderer mRenderer;
 
     public RenderSurfaceView(Context context) {
         super(context);
@@ -36,18 +39,34 @@ public class RenderSurfaceView extends GLSurfaceView {
     }
 
     private void init() {
-        mRenderer = new MyRenderer(this);
+//        mRenderer = new MyRenderer(this);
         setEGLContextClientVersion(2);
-        setRenderer(mRenderer);
+        setRenderer(new Renderer() {
+            @Override
+            public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+
+            }
+
+            @Override
+            public void onSurfaceChanged(GL10 gl10, int i, int i1) {
+
+            }
+
+            @Override
+            public void onDrawFrame(GL10 gl10) {
+
+            }
+        });
+//        setRenderer(mRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         surfaceHolder.addCallback(mSurfaceHolderCallback);
     }
 
-    public MyRenderer getRenderer() {
-        return mRenderer;
-    }
+//    public MyRenderer getRenderer() {
+//        return mRenderer;
+//    }
 
     private SurfaceHolder.Callback mSurfaceHolderCallback = new SurfaceHolder.Callback() {
         @Override
@@ -70,13 +89,13 @@ public class RenderSurfaceView extends GLSurfaceView {
     };
 
     public void setEffect(final Effect effect) {
-        this.queueEvent(new Runnable() {
-            @Override
-            public void run() {
-                if (null != mRenderer) {
-                    mRenderer.setEffect(effect);
-                }
-            }
-        });
+//        this.queueEvent(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (null != mRenderer) {
+//                    mRenderer.setEffect(effect);
+//                }
+//            }
+//        });
     }
 }

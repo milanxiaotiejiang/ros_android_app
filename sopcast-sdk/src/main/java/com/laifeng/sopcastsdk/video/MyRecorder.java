@@ -21,12 +21,12 @@ public class MyRecorder {
 	private InputSurface mInputSurface;
 	private OnVideoEncodeListener mListener;
 	private boolean mPause;
-	private MediaCodec.BufferInfo mBufferInfo;
+//	private MediaCodec.BufferInfo mBufferInfo;
 	private VideoConfiguration mConfiguration;
-	private HandlerThread mHandlerThread;
-	private Handler mEncoderHandler;
+//	private HandlerThread mHandlerThread;
+//	private Handler mEncoderHandler;
 	private ReentrantLock encodeLock = new ReentrantLock();
-	private volatile boolean isStarted;
+//	private volatile boolean isStarted;
 
 	public MyRecorder(VideoConfiguration configuration) {
 		mConfiguration = configuration;
@@ -45,11 +45,11 @@ public class MyRecorder {
 			throw new RuntimeException("prepareEncoder called twice?");
 		}
 		mMediaCodec = VideoMediaCodec.getVideoMediaCodec(mConfiguration);
-		mHandlerThread = new HandlerThread("SopCastEncode");
-		mHandlerThread.start();
-		mEncoderHandler = new Handler(mHandlerThread.getLooper());
-		mBufferInfo = new MediaCodec.BufferInfo();
-		isStarted = true;
+//		mHandlerThread = new HandlerThread("SopCastEncode");
+//		mHandlerThread.start();
+//		mEncoderHandler = new Handler(mHandlerThread.getLooper());
+//		mBufferInfo = new MediaCodec.BufferInfo();
+//		isStarted = true;
 	}
 
 	public boolean firstTimeSetup() {
@@ -67,7 +67,7 @@ public class MyRecorder {
 	}
 
 	public void startSwapData() {
-		mEncoderHandler.post(swapDataRunnable);
+//		mEncoderHandler.post(swapDataRunnable);
 	}
 
 	public void makeCurrent() {
@@ -90,12 +90,12 @@ public class MyRecorder {
 	};
 
 	public void stop() {
-		if (!isStarted) {
-			return;
-		}
-		isStarted = false;
-		mEncoderHandler.removeCallbacks(null);
-		mHandlerThread.quit();
+//		if (!isStarted) {
+//			return;
+//		}
+//		isStarted = false;
+//		mEncoderHandler.removeCallbacks(null);
+//		mHandlerThread.quit();
 		encodeLock.lock();
 		releaseEncoder();
 		encodeLock.unlock();
@@ -103,6 +103,9 @@ public class MyRecorder {
 
 	private void releaseEncoder() {
 		if (mMediaCodec != null) {
+			/**
+			 * 输入Surface将在此调用后立即停止向编解码器提交数据
+			 */
 			mMediaCodec.signalEndOfInputStream();
 			mMediaCodec.stop();
 			mMediaCodec.release();
@@ -127,30 +130,30 @@ public class MyRecorder {
 	}
 
 	private void drainEncoder() {
-		ByteBuffer[] outBuffers = mMediaCodec.getOutputBuffers();
-		while (isStarted) {
-			encodeLock.lock();
-			if(mMediaCodec != null) {
-				int outBufferIndex = mMediaCodec.dequeueOutputBuffer(mBufferInfo, 12000);
-				if (outBufferIndex >= 0) {
-					ByteBuffer bb = outBuffers[outBufferIndex];
-					if (mListener != null) {
-						mListener.onVideoEncode(bb, mBufferInfo);
-					}
-					mMediaCodec.releaseOutputBuffer(outBufferIndex, false);
-				} else {
-					try {
-						// wait 10ms
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				encodeLock.unlock();
-			} else {
-				encodeLock.unlock();
-				break;
-			}
-		}
+//		ByteBuffer[] outBuffers = mMediaCodec.getOutputBuffers();
+//		while (isStarted) {
+//			encodeLock.lock();
+//			if(mMediaCodec != null) {
+//				int outBufferIndex = mMediaCodec.dequeueOutputBuffer(mBufferInfo, 12000);
+//				if (outBufferIndex >= 0) {
+//					ByteBuffer bb = outBuffers[outBufferIndex];
+//					if (mListener != null) {
+//						mListener.onVideoEncode(bb, mBufferInfo);
+//					}
+//					mMediaCodec.releaseOutputBuffer(outBufferIndex, false);
+//				} else {
+//					try {
+//						// wait 10ms
+//						Thread.sleep(10);
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//				encodeLock.unlock();
+//			} else {
+//				encodeLock.unlock();
+//				break;
+//			}
+//		}
 	}
 }

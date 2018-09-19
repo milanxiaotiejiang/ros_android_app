@@ -36,7 +36,7 @@ public class ScreenVideoController implements IVideoController {
     private VirtualDisplay mVirtualDisplay;
     private MediaProjection mMediaProjection;
     private VideoConfiguration mVideoConfiguration = VideoConfiguration.createDefault();
-    private ScreenRecordEncoder mEncoder;
+//    private ScreenRecordEncoder mEncoder;
     private OnVideoEncodeListener mListener;
 
     public ScreenVideoController (MediaProjectionManager manager, int resultCode, Intent resultData) {
@@ -47,24 +47,24 @@ public class ScreenVideoController implements IVideoController {
 
     @Override
     public void start() {
-        mEncoder = new ScreenRecordEncoder(mVideoConfiguration);
-        Surface surface = mEncoder.getSurface();
-        mEncoder.start();
-        mEncoder.setOnVideoEncodeListener(mListener);
-        mMediaProjection = mManager.getMediaProjection(resultCode, resultData);
-        int width = VideoMediaCodec.getVideoSize(mVideoConfiguration.width);
-        int height = VideoMediaCodec.getVideoSize(mVideoConfiguration.height);
-        mVirtualDisplay = mMediaProjection.createVirtualDisplay("ScreenRecoder",
-                width, height, 1, DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, surface, null, null);
+//        mEncoder = new ScreenRecordEncoder(mVideoConfiguration);
+//        Surface surface = mEncoder.getSurface();
+//        mEncoder.start();
+//        mEncoder.setOnVideoEncodeListener(mListener);
+//        mMediaProjection = mManager.getMediaProjection(resultCode, resultData);
+//        int width = VideoMediaCodec.getVideoSize(mVideoConfiguration.width);
+//        int height = VideoMediaCodec.getVideoSize(mVideoConfiguration.height);
+//        mVirtualDisplay = mMediaProjection.createVirtualDisplay("ScreenRecoder",
+//                width, height, 1, DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, surface, null, null);
     }
 
     @Override
     public void stop() {
-        if(mEncoder != null) {
-            mEncoder.setOnVideoEncodeListener(null);
-            mEncoder.stop();
-            mEncoder = null;
-        }
+//        if(mEncoder != null) {
+//            mEncoder.setOnVideoEncodeListener(null);
+//            mEncoder.stop();
+//            mEncoder = null;
+//        }
         if (mMediaProjection != null) {
             mMediaProjection.stop();
             mMediaProjection = null;
@@ -77,16 +77,16 @@ public class ScreenVideoController implements IVideoController {
 
     @Override
     public void pause() {
-        if(mEncoder != null) {
-            mEncoder.setPause(true);
-        }
+//        if(mEncoder != null) {
+//            mEncoder.setPause(true);
+//        }
     }
 
     @Override
     public void resume() {
-        if(mEncoder != null) {
-            mEncoder.setPause(false);
-        }
+//        if(mEncoder != null) {
+//            mEncoder.setPause(false);
+//        }
     }
 
     @Override
@@ -97,11 +97,11 @@ public class ScreenVideoController implements IVideoController {
             //由于重启硬编编码器效果不好，此次不做处理
             SopCastLog.d(SopCastConstant.TAG, "Bps need change, but MediaCodec do not support.");
         }else {
-            if (mEncoder != null) {
-                SopCastLog.d(SopCastConstant.TAG, "Bps change, current bps: " + bps);
-                mEncoder.setRecorderBps(bps);
-                result = true;
-            }
+//            if (mEncoder != null) {
+//                SopCastLog.d(SopCastConstant.TAG, "Bps change, current bps: " + bps);
+//                mEncoder.setRecorderBps(bps);
+//                result = true;
+//            }
         }
         return result;
     }

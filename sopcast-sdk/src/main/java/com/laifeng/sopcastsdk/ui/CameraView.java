@@ -29,9 +29,9 @@ import com.laifeng.sopcastsdk.video.MyRenderer;
  */
 public class CameraView extends FrameLayout {
     private Context mContext;
-    protected RenderSurfaceView mRenderSurfaceView;
-    protected MyRenderer mRenderer;
-    private FocusPieView mFocusHudRing;
+//    protected RenderSurfaceView mRenderSurfaceView;
+//    protected MyRenderer mRenderer;
+//    private FocusPieView mFocusHudRing;
     private FocusManager mFocusManager;
     private GestureDetector mGestureDetector;
     private ScaleGestureDetector mZoomGestureDetector;
@@ -39,8 +39,8 @@ public class CameraView extends FrameLayout {
     private boolean mIsFocusing;
     private CameraZoomListener mZoomListener;
     private boolean isFocusTouchMode = false;
-    private boolean isMediaOverlay;
-    private boolean isRenderSurfaceViewShowing = true;
+//    private boolean isMediaOverlay;
+//    private boolean isRenderSurfaceViewShowing = true;
     private float mAspectRatio = 9.0f/16;
 
     public CameraView(Context context, AttributeSet attrs) {
@@ -67,10 +67,10 @@ public class CameraView extends FrameLayout {
         LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mInflater.inflate(R.layout.layout_camera_view, this, true);
         mHandler = new WeakHandler();
-        mRenderSurfaceView = (RenderSurfaceView) findViewById(R.id.render_surface_view);
-        mRenderSurfaceView.setZOrderMediaOverlay(isMediaOverlay);
-        mRenderer = mRenderSurfaceView.getRenderer();
-        mFocusHudRing = (FocusPieView) findViewById(R.id.focus_view);
+//        mRenderSurfaceView = (RenderSurfaceView) findViewById(R.id.render_surface_view);
+//        mRenderSurfaceView.setZOrderMediaOverlay(isMediaOverlay);
+//        mRenderer = mRenderSurfaceView.getRenderer();
+//        mFocusHudRing = (FocusPieView) findViewById(R.id.focus_view);
         mFocusManager = new FocusManager();
         mFocusManager.setListener(new MainFocusListener());
         mGestureDetector = new GestureDetector(mContext, new GestureListener());
@@ -108,18 +108,18 @@ public class CameraView extends FrameLayout {
     }
 
     private void addRenderSurfaceView() {
-        if(!isRenderSurfaceViewShowing) {
-            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            addView(mRenderSurfaceView, 0, layoutParams);
-            isRenderSurfaceViewShowing = true;
-        }
+//        if(!isRenderSurfaceViewShowing) {
+//            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//            addView(mRenderSurfaceView, 0, layoutParams);
+//            isRenderSurfaceViewShowing = true;
+//        }
     }
 
     private void removeRenderSurfaceView() {
-        if(isRenderSurfaceViewShowing) {
-            removeView(mRenderSurfaceView);
-            isRenderSurfaceViewShowing = false;
-        }
+//        if(isRenderSurfaceViewShowing) {
+//            removeView(mRenderSurfaceView);
+//            isRenderSurfaceViewShowing = false;
+//        }
     }
 
     /**
@@ -129,16 +129,16 @@ public class CameraView extends FrameLayout {
         @Override
         public void onFocusStart() {
             mIsFocusing = true;
-            mFocusHudRing.setVisibility(VISIBLE);
-            mFocusHudRing.animateWorking(1500);
+//            mFocusHudRing.setVisibility(VISIBLE);
+//            mFocusHudRing.animateWorking(1500);
             requestLayout();
         }
 
         @Override
         public void onFocusReturns(final boolean success) {
             mIsFocusing = false;
-            mFocusHudRing.setFocusImage(success);
-            mFocusHudRing.setVisibility(INVISIBLE);
+//            mFocusHudRing.setFocusImage(success);
+//            mFocusHudRing.setVisibility(INVISIBLE);
             requestLayout();
         }
     }
@@ -147,7 +147,7 @@ public class CameraView extends FrameLayout {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (mFocusManager != null) {
-                mFocusHudRing.setPosition(e.getX(), e.getY());
+//                mFocusHudRing.setPosition(e.getX(), e.getY());
                 mFocusManager.refocus();
             }
             return super.onSingleTapConfirmed(e);
@@ -155,10 +155,10 @@ public class CameraView extends FrameLayout {
     }
 
     public void setZOrderMediaOverlay(boolean isMediaOverlay) {
-        this.isMediaOverlay = isMediaOverlay;
-        if(mRenderSurfaceView != null) {
-            mRenderSurfaceView.setZOrderMediaOverlay(isMediaOverlay);
-        }
+//        this.isMediaOverlay = isMediaOverlay;
+//        if(mRenderSurfaceView != null) {
+//            mRenderSurfaceView.setZOrderMediaOverlay(isMediaOverlay);
+//        }
     }
 
     /**
@@ -191,14 +191,14 @@ public class CameraView extends FrameLayout {
             if (mFocusManager != null) {
                 mHandler.postDelayed(new Runnable() {
                     public void run() {
-                        mFocusHudRing.resetPosition();
+//                        mFocusHudRing.resetPosition();
                         mFocusManager.refocus();
                     }
                 }, 1000);
             }
         } else {
             isFocusTouchMode = false;
-            mFocusHudRing.setVisibility(INVISIBLE);
+//            mFocusHudRing.setVisibility(INVISIBLE);
         }
     }
 

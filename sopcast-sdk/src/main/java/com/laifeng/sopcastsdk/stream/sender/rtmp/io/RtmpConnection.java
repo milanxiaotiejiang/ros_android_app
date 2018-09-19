@@ -40,7 +40,11 @@ import java.util.regex.Pattern;
  * 
  * @author francois, leoma
  */
-public class RtmpConnection implements OnReadListener, OnWriteListener {
+public class RtmpConnection
+        implements
+        OnReadListener,
+        OnWriteListener
+{
 
     private static final String TAG = "RtmpConnection";
     private static final Pattern rtmpUrlPattern = Pattern.compile("^rtmp://([^/:]+)(:(\\d+))*/([^/]+)(/(.*))*$");

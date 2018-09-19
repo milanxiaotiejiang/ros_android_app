@@ -16,5 +16,5 @@
 
 //include 'teleop'
 //include 'map_nav'
-include 'make_a_map', ':sopcast-sdk'
+include 'make_a_map', ':sopcast-sdk', ':plvideo'
 //include 'map_manager'

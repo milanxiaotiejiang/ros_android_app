@@ -31,10 +31,6 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="com.github.rosjava.android_apps.make_a_map.MainActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -42,16 +38,16 @@
 
         <activity android:name="org.ros.android.MasterChooser" />
 
+        <activity android:name=".CrashActivity" />
         <activity
-            android:name="com.github.rosjava.android_apps.make_a_map.MainActivity2"
+            android:name=".MyActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".CrashActivity" />
 
         <service android:name="org.ros.android.NodeMainExecutorService">
             <intent-filter>

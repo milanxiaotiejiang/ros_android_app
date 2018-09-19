@@ -60,7 +60,11 @@ public class RtmpPacker implements Packer, AnnexbHelper.AnnexbNaluListener{
 
     @Override
     public void onAudioData(ByteBuffer bb, MediaCodec.BufferInfo bi) {
-        if(packetListener == null || !isHeaderWrite || !isKeyFrameWrite) {
+        //暂时去掉视频第一帧判断
+        if(packetListener == null
+//                || !isHeaderWrite
+//                || !isKeyFrameWrite
+                ) {
             return;
         }
         bb.position(bi.offset);
