@@ -306,7 +306,6 @@ public class MyActivity extends MainActivity {
                     showToastTips(MyActivity.this, "unknown error !");
                     break;
             }
-            finish();
             return true;
         }
     };
