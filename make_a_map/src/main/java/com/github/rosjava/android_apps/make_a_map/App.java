@@ -8,7 +8,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        String absolutePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/";
-        RCrashHandler.getInstance(absolutePath).init(this, null);
+//        String absolutePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/";
+//        RCrashHandler.getInstance(absolutePath).init(this, null);
     }
 }
